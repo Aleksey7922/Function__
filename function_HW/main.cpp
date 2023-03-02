@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 using namespace std;
 
 int Degree(int a, int pow);
@@ -9,13 +9,13 @@ void main()
 	setlocale(LC_ALL, "RUS");
 
 	int c, f = 1, i = 1;
-	cout << "Ââåäèòå ÷èñëî: "; cin >> c;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; cin >> c;
 	for (; i <= c; i++)f *= i;
 	cout << c << "!" << "=" << Factorial(i, f) << endl;
 
 	int a, n, pow = 1;
-	cout << "Ââåäèòå ÷èñëî: "; cin >> a;
-	cout << "Óêàæèòå ñòåïåíü: "; cin >> n;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; cin >> a;
+	cout << "Ð£ÐºÐ°Ð¶Ð¸Ñ‚Ðµ ÑÑ‚ÐµÐ¿ÐµÐ½ÑŒ: "; cin >> n;
 	for (int i = 1; i <= n; i++)
 	{
 		pow *= a;
