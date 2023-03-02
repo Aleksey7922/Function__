@@ -1,8 +1,8 @@
-#include<iostream>
+п»ї#include<iostream>
 using namespace std;
 
 
-int Sum(int a, int b);    //протоип функции,обьявление функции
+int Sum(int a, int b);    //РїСЂРѕС‚РѕРёРї С„СѓРЅРєС†РёРё,РѕР±СЊСЏРІР»РµРЅРёРµ С„СѓРЅРєС†РёРё
 int Dif(int a, int b);
 int Product(int a, int b);
 double Quotient(double a, double b);
@@ -14,16 +14,16 @@ void main()
 	setlocale(LC_ALL, "RUS");
 
 	int a, b;
-	cout << "ВВЕДИТЕ ДВА ЧИСЛА: "; cin >> a >> b;
+	cout << "Р’Р’Р•Р”РРўР• Р”Р’Рђ Р§РРЎР›Рђ: "; cin >> a >> b;
 
-	int c = Sum(a, b); //использование функции
+	int c = Sum(a, b); //РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ С„СѓРЅРєС†РёРё
 	cout << a << "+" << b << "=" << c << endl;
 	cout << a << "-" << b << "=" << Dif(a, b) << endl;
 	cout << a << "*" << b << "=" << Product(a, b) << endl;
 	cout << a << "/" << b << "=" << Quotient(a, b) << endl;
 	cout << a << "%" << b << "=" << Remivder(a, b) << endl;
 }
-int Sum(int a, int b)   //реализация функции 
+int Sum(int a, int b)   //СЂРµР°Р»РёР·Р°С†РёСЏ С„СѓРЅРєС†РёРё 
 {
 	int c = a + b;
 	return c;
