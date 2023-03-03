@@ -4,7 +4,7 @@ using namespace std;
 
 int Sum(int a, int b);    //протоип функции,обьявление функции
 int Dif(int a, int b);
-int Product(int a, int b);
+int Product(int a=1, int b=1);//параметры по умолчанию
 double Quotient(double a, double b);
 int Remivder(int a, int b);
 
