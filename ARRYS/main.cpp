@@ -13,7 +13,7 @@ void main()
 
 
 	cout << "Введите злементы массива: ";
-	int sum = 0; double arith_mean = 0;
+	double sum = 0; double arith_mean = 0;
 	for (int i = 0; i < n; i++)
 	{
 		cin >> arr[i];
