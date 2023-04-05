@@ -5,13 +5,15 @@ using std::cout;
 using std::endl;
 using std::cin;
 
-const int ROWS = 3;
-const int COLS = 4;
+#define delimiter "\n---------------------------";
+
+const int ROWS = 5;
+const int COLS = 8;
 
 void FillRand(int arr[], const int n, int minRand = 0, int maxRand = 100);
 void FillRand(double arr[], const int n, int maxRand, int minRand);
 void FillRand(char arr[], const int n);
-void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS);
+void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS, int minRand = 0, int maxRand = 100);
 void FillRand(double arr[ROWS][COLS], const int ROWS, const int COLS);
 void FillRand(char arr[ROWS][COLS], const int ROWS, const int COLS);
 
@@ -115,19 +117,18 @@ void main()
 #endif // ARRAYS_1
 
 	int i_arr_2[ROWS][COLS];
-	FillRand(i_arr_2, ROWS, COLS);
+	FillRand(i_arr_2, ROWS, COLS, 10, 20);
 	Print(i_arr_2, ROWS, COLS);
+	Search(i_arr_2, ROWS, COLS);
 	int number_of_shifts;
 
 	cout << "Сумма элементов массива: " << Sum(i_arr_2, ROWS, COLS) << endl;
 	cout << "Среднее арифметическое элементов массива: " << Avg(i_arr_2, ROWS, COLS) << endl;
-
-	Sort(i_arr_2, ROWS, COLS);
-	Print(i_arr_2, ROWS, COLS);
-
 	//cout << "Минимальное значение в массиве:  " << minValuein(i_arr_2, ROWS, COLS) << endl;
-
 	cout << "Максимальное значение в массиве: " << maxValuein(i_arr_2, ROWS, COLS) << endl;
+
+	//Sort(i_arr_2, ROWS, COLS);
+	//Print(i_arr_2, ROWS, COLS);
 
 	/*cout << "Введите количество сдвигов: "; cin >> number_of_shifts;
 	shiftLeft(i_arr_2, ROWS, COLS, number_of_shifts);
@@ -136,13 +137,11 @@ void main()
 	/*cout << "Введите количество сдвигов: "; cin >> number_of_shifts;
 	shiftRight(i_arr_2, ROWS, COLS, number_of_shifts);
 	UniqueRand(i_arr_2, ROWS, COLS);*/
-	
-	UniqueRand(i_arr_2, ROWS, COLS);
-	Print(i_arr_2, ROWS, COLS);
 
-	Search(i_arr_2, ROWS, COLS);
-	Print(i_arr_2, ROWS, COLS);
-
+	//UniqueRand(i_arr_2, ROWS, COLS);
+	//Print(i_arr_2, ROWS, COLS);
+	//Search(i_arr_2, ROWS, COLS);
+	//Print(i_arr_2, ROWS, COLS);
 }
 void FillRand(int arr[], const int n, int minRand, int maxRand)
 {
@@ -168,13 +167,13 @@ void FillRand(char arr[], const int n)
 		arr[i] = rand();
 	}
 }
-void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS)
+void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS, int minRand, int maxRand)
 {
 	for (int i = 0; i < ROWS; i++)
 	{
 		for (int j = 0; j < COLS; j++)
 		{
-			arr[i][j] = rand() % 100;
+			arr[i][j] = rand() % (maxRand - minRand) + minRand;
 
 		}
 	}
@@ -531,7 +530,7 @@ void Sort(int arr[ROWS][COLS], const int ROWS, const int COLS)
 	{
 		for (int j = 0; j < COLS; j++)
 		{
-			for (int k = 0; k < ROWS; k++)
+			for (int k = i; k < ROWS; k++)
 			{
 				for (int l = k == i ? j + 1 : 0; l < COLS; l++)
 				{
@@ -843,18 +842,26 @@ void UniqueRand(int arr[ROWS][COLS], const int ROWS, const int COLS)
 	{
 		for (int j = 0; j < COLS; j++)
 		{
-			arr[i][j] = rand() % 10;
-			for (int k = 0; k < i; k++)
+			bool unique;
+			do
 			{
-				for (int l = 0; l < j; l++)
+				arr[i][j] = rand() % (ROWS * COLS);
+
+				unique = true;
+				for (int k = 0; k <= i; k++)
 				{
-					if (arr[i][j] == arr[k][l])
+					for (int l = 0; l < (k == i ? j : COLS); l++)
 					{
-						i--;
-						break;
+						if (arr[i][j] == arr[k][l])
+						{
+							unique = false;
+							break;
+						}
 					}
+
+					if (!unique)break;
 				}
-			}
+			} while (!unique);
 		}
 	}
 }
@@ -864,18 +871,25 @@ void UniqueRand(double arr[ROWS][COLS], const int ROWS, const int COLS)
 	{
 		for (int j = 0; j < COLS; j++)
 		{
-			arr[i][j] = rand() % 10;
-			for (int k = 0; k < i; k++)
+			bool unique;
+			do
 			{
-				for (int l = 0; l < j; l++)
+
+				arr[i][j] = rand() % (ROWS * COLS);
+			unique = true;
+			for (int k = 0; k <= i; k++)
+			{
+				for (int l = 0; l <(k==i ? j:COLS); l++)
 				{
 					if (arr[i][j] == arr[k][l])
 					{
-						i--;
+						unique = false;
 						break;
 					}
 				}
+				if (!unique)break;
 			}
+			} while (!unique);
 		}
 	}
 }
@@ -885,21 +899,30 @@ void UniqueRand(char arr[ROWS][COLS], const int ROWS, const int COLS)
 	{
 		for (int j = 0; j < COLS; j++)
 		{
-			arr[i][j] = rand() % 10;
-			for (int k = 0; k < i; k++)
+			bool unique;
+			do
 			{
-				for (int l = 0; l < j; l++)
+				arr[i][j] = rand() % (ROWS * COLS);
+
+				unique = true;
+				for (int k = 0; k <= i; k++)
 				{
-					if (arr[i][j] == arr[k][l])
+					for (int l = 0; l < (k == i ? j : COLS); l++)
 					{
-						i--;
-						break;
+						if (arr[i][j] == arr[k][l])
+						{
+							unique = false;
+							break;
+						}
 					}
+
+					if (!unique)break;
 				}
-			}
+			} while (!unique);
 		}
 	}
 }
+	
 
 void Search(int arr[], const int n)
 {
@@ -990,32 +1013,37 @@ void Search(int arr[ROWS][COLS], const int ROWS, const int COLS)
 	{
 		for (int j = 0; j < COLS; j++)
 		{
-			bool met_defore = false;
-			for (int k = 0; k < i; k++)
+			// Выясняем,встречался ли элемент ранее:
+			int met_before = false;
+			for (int k = 0; k <= i; k++)
 			{
-				for (int l = 0; l < j; l++)
+				for (int l = 0; l < (k == i ? j : COLS); l++)
 				{
 					if (arr[i][j] == arr[k][l])
 					{
-						met_defore = true;
+						met_before = true;
 						break;
 					}
 				}
+				if (met_before)break;
 			}
-			if (met_defore)continue;
-			int count = 0;
-			for (int k = i + 1; k < ROWS; k++)
+			// Если злемент встречался ранее, то мы уже вывели его на экран, и второй раз этого делать  не надо
+			//поэтому пропускаем следующий код:
+			if (met_before)continue;
+			// если же элемент ранее не встречался, то нужно выяснить сколько раз  он повторяетсяся, и вывести его на экран 
+			int count = 0; //счетчик провторений
+			for (int k = i; k < ROWS; k++)
 			{
-				for (int l = j + 1; l < COLS; l++)
+				for (int l = k == i ? j + 1 : 0; l < COLS; l++)
 				{
-					if (arr[i] == arr[k])
+					if (arr[i][j] == arr[k][l])
 					{
 						count++;
 					}
 				}
 			}
-			if (count)cout << " если " << arr[i][j] << "повторяется " << count << "раз" << endl;
-
+			//if (count)cout << " если " << arr[i][j] << "повторяется " << count << "раз" << endl;
+			if (count)printf("значение %i повторяется %i раз", arr[i][j], count);
 		}
 	}
 }
@@ -1025,31 +1053,32 @@ void Search(double arr[ROWS][COLS], const int ROWS, const int COLS)
 	{
 		for (int j = 0; j < COLS; j++)
 		{
-			bool met_defore = false;
-			for (int k = 0; k < i; k++)
+			int met_before = false;
+			for (int k = 0; k <= i; k++)
 			{
-				for (int l = 0; l < j; l++)
+				for (int l = 0; l < (k == i ? j : COLS); l++)
 				{
 					if (arr[i][j] == arr[k][l])
 					{
-						met_defore = true;
+						met_before = true;
 						break;
 					}
 				}
+				if (met_before)break;
 			}
-			if (met_defore)continue;
+			if (met_before)continue;
 			int count = 0;
-			for (int k = i + 1; k < ROWS; k++)
+			for (int k = i; k < ROWS; k++)
 			{
-				for (int l = j + 1; l < COLS; l++)
+				for (int l = k == i ? j + 1 : 0; l < COLS; l++)
 				{
-					if (arr[i] == arr[k])
+					if (arr[i][j] == arr[k][l])
 					{
 						count++;
 					}
 				}
 			}
-			if (count)cout << " если " << arr[i][j] << "повторяется " << count << "раз" << endl;
+			if (count)printf("значение %i повторяется %i раз", arr[i][j], count);
 
 		}
 	}
@@ -1060,31 +1089,32 @@ void Search(char arr[ROWS][COLS], const int ROWS, const int COLS)
 	{
 		for (int j = 0; j < COLS; j++)
 		{
-			bool met_defore = false;
-			for (int k = 0; k < i; k++)
+			int met_before = false;
+			for (int k = 0; k <= i; k++)
 			{
-				for (int l = 0; l < j; l++)
+				for (int l = 0; l < (k == i ? j : COLS); l++)
 				{
 					if (arr[i][j] == arr[k][l])
 					{
-						met_defore = true;
+						met_before = true;
 						break;
 					}
 				}
+				if (met_before)break;
 			}
-			if (met_defore)continue;
+			if (met_before)continue;
 			int count = 0;
-			for (int k = i + 1; k < ROWS; k++)
+			for (int k = i; k < ROWS; k++)
 			{
-				for (int l = j + 1; l < COLS; l++)
+				for (int l = k == i ? j + 1 : 0; l < COLS; l++)
 				{
-					if (arr[i] == arr[k])
+					if (arr[i][j] == arr[k][l])
 					{
 						count++;
 					}
 				}
 			}
-			if (count)cout << " если " << arr[i][j] << "повторяется " << count << "раз" << endl;
+			if (count)printf("значение %i повторяется %i раз", arr[i][j], count);
 
 		}
 	}
