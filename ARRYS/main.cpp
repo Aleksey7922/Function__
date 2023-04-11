@@ -127,21 +127,21 @@ void main()
 	//cout << "Минимальное значение в массиве:  " << minValuein(i_arr_2, ROWS, COLS) << endl;
 	cout << "Максимальное значение в массиве: " << maxValuein(i_arr_2, ROWS, COLS) << endl;
 
-	//Sort(i_arr_2, ROWS, COLS);
-	//Print(i_arr_2, ROWS, COLS);
+	Sort(i_arr_2, ROWS, COLS);
+	Print(i_arr_2, ROWS, COLS);
 
-	/*cout << "Введите количество сдвигов: "; cin >> number_of_shifts;
+	cout << "Введите количество сдвигов: "; cin >> number_of_shifts;
 	shiftLeft(i_arr_2, ROWS, COLS, number_of_shifts);
-	Print(i_arr_2, ROWS, COLS);*/
+	Print(i_arr_2, ROWS, COLS);
 
 	/*cout << "Введите количество сдвигов: "; cin >> number_of_shifts;
 	shiftRight(i_arr_2, ROWS, COLS, number_of_shifts);
 	UniqueRand(i_arr_2, ROWS, COLS);*/
 
-	//UniqueRand(i_arr_2, ROWS, COLS);
-	//Print(i_arr_2, ROWS, COLS);
-	//Search(i_arr_2, ROWS, COLS);
-	//Print(i_arr_2, ROWS, COLS);
+	UniqueRand(i_arr_2, ROWS, COLS);
+	Print(i_arr_2, ROWS, COLS);
+	Search(i_arr_2, ROWS, COLS);
+	Print(i_arr_2, ROWS, COLS);
 }
 void FillRand(int arr[], const int n, int minRand, int maxRand)
 {
