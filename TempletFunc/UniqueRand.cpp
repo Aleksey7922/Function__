@@ -3,7 +3,7 @@
 
 template<typename T>void UniqueRand(T arr[], const int n)
 {
-	for (int i = 0; i < n; i++);
+	for (int i = 0; i < n; i++)
 	{
 		arr[i] = rand() % 100;
 		for (int j = 0; j < i; j++)

@@ -1,6 +1,6 @@
 ﻿#include"stdafx.h"
 #include"constants.h"
-#include"FillRand.cpp"
+#include"FillRand.h"
 #include"Print.cpp"
 #include"Statistics.cpp"
 #include"Sort.cpp"
