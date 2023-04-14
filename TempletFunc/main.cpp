@@ -6,7 +6,7 @@
 #include"Sort.cpp"
 #include"Shift.cpp"
 #include"UniqueRand.cpp"
-#include"Searsh.h"
+#include"Searsh.cpp"
 
 
 
